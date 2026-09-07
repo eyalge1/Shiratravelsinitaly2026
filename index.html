@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ההרפתקה שלי באיטליה 🇮🇹</title>
+<meta name="theme-color" content="#ff7eb6">
+<style>
+:root{--pink:#ff7eb6;--purple:#8b5cf6;--blue:#60a5fa;--mint:#6ee7b7;--yellow:#fde68a;--ink:#24324a;--muted:#6b7280;--card:#fff;--bg:#fff7fb;--line:#f1d9e8;--good:#16a34a}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:linear-gradient(#fff7fb,#f7fbff);color:var(--ink)}button,input{font:inherit}.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:86px}.hero{padding:24px 18px 20px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border-radius:0 0 28px 28px;box-shadow:0 12px 30px rgba(139,92,246,.2)}.hero h1{margin:0;font-size:27px}.hero p{margin:8px 0 0;line-height:1.5}.stars{font-size:24px;letter-spacing:3px;margin-top:10px}.progress{margin-top:15px;background:rgba(255,255,255,.25);height:14px;border-radius:999px;overflow:hidden}.progress>div{height:100%;background:#fff;width:0%;transition:.25s}.progressText{margin-top:7px;font-size:13px;font-weight:700}.content{padding:15px}.tabs{display:flex;gap:8px;overflow:auto;margin:4px 0 14px}.tab{border:0;border-radius:999px;padding:10px 14px;background:#fff;color:var(--purple);font-weight:800;box-shadow:0 3px 12px rgba(36,50,74,.08);white-space:nowrap}.tab.active{background:var(--purple);color:#fff}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:15px;margin-bottom:13px;box-shadow:0 8px 22px rgba(36,50,74,.07)}.date{font-size:12px;font-weight:900;color:var(--purple);background:#f3e8ff;display:inline-block;padding:6px 10px;border-radius:999px}.card h2{font-size:19px;margin:10px 0 5px}.route{color:var(--muted);font-size:14px;line-height:1.55}.mission{display:flex;gap:10px;align-items:center;background:#fff9df;border:1px solid #f8e58b;border-radius:16px;padding:11px;margin-top:12px}.mission .emoji{font-size:25px}.doneBtn{margin-top:12px;width:100%;border:0;border-radius:16px;padding:12px 14px;background:#eef2ff;color:#4f46e5;font-weight:900}.doneBtn.done{background:#dcfce7;color:#15803d}.hidden{display:none}.packingIntro{background:linear-gradient(135deg,#dcfce7,#e0f2fe);border:0}.packGroup h3{margin:0 0 10px}.packItem{display:flex;align-items:center;gap:11px;padding:11px 5px;border-top:1px dashed #eadcea}.packItem:first-of-type{border-top:0}.packItem input{width:22px;height:22px;accent-color:var(--good)}.packItem.checked span{text-decoration:line-through;color:#9ca3af}.packStat{font-size:22px;font-weight:900;color:#15803d}.badgeRow{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.badge{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center}.badge.locked{filter:grayscale(1);opacity:.45}.badge .big{font-size:34px}.bottom{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;pointer-events:none}.bottomIn{pointer-events:auto;width:min(520px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:9px}.nav{border:0;background:none;font-size:12px;font-weight:800;color:#7c7c8f}.nav.active{color:var(--purple)}.tiny{font-size:12px;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero">
+<h1>ההרפתקה שלי באיטליה 🇮🇹</h1>
+<p>16 ימים של הרים, אגמים, הרפתקאות, מים, גלידה והמון זיכרונות משפחתיים.</p>
+<div class="stars">⭐ 🌈 🍦 🏔️ 🚤</div>
+<div class="progress"><div id="tripProgress"></div></div>
+<div class="progressText" id="tripProgressText"></div>
+</header>
+<main class="content">
+<div class="tabs" id="dayTabs"></div>
+<section id="routeSection"><div id="days"></div></section>
+<section id="packingSection" class="hidden">
+<div class="card packingIntro"><div class="packStat" id="packStat">0/0 נארזו</div><div class="tiny">כל סימון נשמר במכשיר. כשתסיימי הכול – המזוודה מוכנה ✨</div></div>
+<div id="packing"></div>
+</section>
+<section id="badgesSection" class="hidden">
+<div class="card"><h2>המדליות שלי 🏅</h2><div class="tiny">ככל שתסמני יותר חוויות ופריטים, ייפתחו עוד מדליות.</div></div>
+<div class="badgeRow" id="badges"></div>
+</section>
+</main>
+<div class="bottom"><div class="bottomIn">
+<button class="nav active" data-screen="route">🗺️<br>המסלול</button>
+<button class="nav" data-screen="packing">🎒<br>מה אורזים?</button>
+<button class="nav" data-screen="badges">🏆<br>המדליות שלי</button>
+</div></div>
+</div>
+<script>
+const days=[
+{d:'13/9',t:'נחיתה במילאנו → דסנזאנו',r:'מתחילים את ההרפתקה ומגיעים לאגם גארדה',e:'✈️',m:'למצוא את האגם הראשון',z:'garda'},
+{d:'14/9',t:'דסנזאנו → Lago di Molveno → לאיון / אורטיזיי',r:'עוצרים באגם מולבנו וממשיכים לדולומיטים',e:'🏞️',m:'לבחור את הנוף הכי יפה ליד האגם',z:'dol'},
+{d:'15/9',t:'Seceda',r:'יום של פסגות, רכבלים ונוף מדהים',e:'⛰️',m:'למצוא פסגה שנראית כמו שן ענקית',z:'dol'},
+{d:'16/9',t:'Alpe di Siusi – יום מלא',r:'יום של טבע, מרחבים ירוקים ונוף הררי',e:'🐄',m:'לצלם תמונת גלויה משפחתית',z:'dol'},
+{d:'17/9',t:'רכיבה על סוסים + Terme Merano',r:'רכיבה על סוסים ואחר כך זמן של מים חמים ופינוק',e:'🐴',m:'לבחור את הרגע הכי כיפי עם הסוסים',z:'dol'},
+{d:'18/9',t:'ראפטינג – Val di Fiemme',r:'יום של מים, אדרנלין והרבה צחוק',e:'🚣‍♀️',m:'לזכור את הרגע הכי מצחיק במים',z:'dol'},
+{d:'19/9',t:'דולומיטים → Passo Sella → Lago di Carezza → Cavalese → Riva',r:'יום מעבר עם הרים, אגם ונופים בדרך לריבה',e:'🚙',m:'לבחור את הנוף הכי יפה של היום',z:'dol'},
+{d:'20/9',t:'Varone + Limone',r:'מפל מרשים ואחר כך עיירת לימונים על שפת האגם',e:'🍋',m:'למצוא משהו צהוב בלימונה',z:'garda'},
+{d:'21/9',t:'Busatte Adventure Park + Torbole',r:'פארק חבלים והרפתקאות ואחר כך טורבולה',e:'🌳',m:'לבחור את המסלול הכי כיפי בפארק',z:'garda'},
+{d:'22/9',t:'Lago di Tenno + Canale di Tenno',r:'אגם טורקיז וכפר עתיק וציורי',e:'🏞️',m:'למצוא את הפינה הכי ציורית בכפר',z:'garda'},
+{d:'23/9',t:'ריבה → דרום גארדה / Lazise',r:'נוסעים דרומה לאורך האגם ומגיעים לאזור לאזיסה',e:'🌿',m:'לזהות איך הנוף משתנה בדרך',z:'garda'},
+{d:'24/9',t:'Sirmione + Aquaria',r:'טירה, סמטאות ואחר כך זמן של מים ופינוק',e:'🏰',m:'להרגיש כמו נסיכה בטירה',z:'garda'},
+{d:'25/9',t:'Verona',r:'יום בעיר ורונה עם כיכרות, רחובות ואתרים מפורסמים',e:'🏛️',m:'למצוא את המרפסת המפורסמת',z:'garda'},
+{d:'26/9',t:'קארטינג / ברדולינו / יום קל',r:'יום קליל עם קארטינג, ברדולינו וזמן חופשי',e:'🏎️',m:'לבחור את הפעילות הכי כיפית של היום',z:'garda'},
+{d:'27/9',t:'Museo Ferrari + מילאנו + מלפנסה',r:'מכוניות מהירות, מילאנו והמשך ללינה ליד שדה התעופה',e:'🏎️',m:'למצוא את המכונית הכי מיוחדת במוזיאון',z:'end'},
+{d:'28/9',t:'מלפנסה → טיסה חזרה',r:'טסים הביתה עם המון זיכרונות',e:'🏠',m:'לבחור מה הדבר הראשון שרוצים לספר בבית',z:'end'}
+];
+
+const pack={
+'בגדים 👕':['חולצות קצרות','חולצה ארוכה','מכנסיים קצרים','מכנסיים ארוכים','סווטשירט / פליז','מעיל קל נגד גשם','פיג׳מה','תחתונים','גרביים'],
+'נעליים והרפתקאות 🥾':['נעלי הליכה נוחות','נעלי ספורט','כובע','משקפי שמש','תיק יום קטן','בקבוק מים'],
+'טיפוח 🪥':['מברשת שיניים','משחת שיניים','מברשת שיער','קרם הגנה','שפתון לחות'],
+'טכנולוגיה 🎧':['טלפון / טאבלט אם לוקחים','אוזניות','מטען','סוללה ניידת'],
+'לטיסה ✈️':['דרכון','כרית צוואר אם רוצים','ספר / משחק','חטיף קטן','סווטשירט לטיסה'],
+'דברים חשובים במיוחד 💖':['בובה / חפץ אהוב','מחברת קטנה','עטים צבעוניים','מצלמה / מקום לתמונות','מצב רוח להרפתקה 😄']
+};
+
+const done=JSON.parse(localStorage.getItem('kidTripDone')||'{}');
+const packed=JSON.parse(localStorage.getItem('kidTripPacked')||'{}');
+let filter='all';
+function save(){localStorage.setItem('kidTripDone',JSON.stringify(done));localStorage.setItem('kidTripPacked',JSON.stringify(packed));}
+function buildTabs(){const el=document.getElementById('dayTabs');el.innerHTML='';[['all','כל הימים'],['dol','🏔️ דולומיטים'],['garda','🌊 גארדה'],['end','✨ סוף הטיול']].forEach(([k,l])=>{const b=document.createElement('button');b.className='tab'+(filter===k?' active':'');b.textContent=l;b.onclick=()=>{filter=k;buildTabs();renderDays()};el.appendChild(b)});}
+function renderDays(){const el=document.getElementById('days');el.innerHTML='';days.forEach((x,i)=>{if(filter!=='all'&&x.z!==filter)return;const c=document.createElement('div');c.className='card';const isDone=!!done[i];c.innerHTML=`<span class="date">יום ${i+1} · ${x.d}</span><h2>${x.e} ${x.t}</h2><div class="route">${x.r}</div><div class="mission"><div class="emoji">🎯</div><div><b>המשימה שלי:</b><br>${x.m}</div></div><button class="doneBtn ${isDone?'done':''}">${isDone?'✅ עשיתי!':'עוד לא עשיתי'}</button>`;c.querySelector('button').onclick=()=>{done[i]=!done[i];save();renderDays();updateProgress();renderBadges();};el.appendChild(c)});}
+function renderPacking(){const root=document.getElementById('packing');root.innerHTML='';let n=0,total=0;Object.entries(pack).forEach(([g,items])=>{const c=document.createElement('div');c.className='card packGroup';c.innerHTML=`<h3>${g}</h3>`;items.forEach(item=>{total++;const key=g+'|'+item;if(packed[key])n++;const row=document.createElement('label');row.className='packItem'+(packed[key]?' checked':'');row.innerHTML=`<input type="checkbox" ${packed[key]?'checked':''}><span>${item}</span>`;row.querySelector('input').onchange=e=>{packed[key]=e.target.checked;save();renderPacking();renderBadges();};c.appendChild(row)});root.appendChild(c)});document.getElementById('packStat').textContent=`${n}/${total} נארזו`;}
+function updateProgress(){const n=Object.values(done).filter(Boolean).length;const pct=Math.round(n/days.length*100);document.getElementById('tripProgress').style.width=pct+'%';document.getElementById('tripProgressText').textContent=`${n} מתוך ${days.length} ימים סומנו כחוויה שהושלמה`;}
+function renderBadges(){const doneN=Object.values(done).filter(Boolean).length;const packN=Object.values(packed).filter(Boolean).length;const totalPack=Object.values(pack).flat().length;const data=[['🎒','אלופת האריזה',packN>=10],['🧳','המזוודה מוכנה',packN===totalPack],['🏔️','חוקרת הרים',doneN>=5],['🍦','מומחית איטליה',doneN>=10],['🌟','כוכבת המסע',doneN>=15],['🏆','סיימתי את איטליה!',doneN===16]];const el=document.getElementById('badges');el.innerHTML='';data.forEach(([e,t,on])=>{const b=document.createElement('div');b.className='badge'+(on?'':' locked');b.innerHTML=`<div class="big">${e}</div><b>${t}</b><div class="tiny">${on?'נפתח!':'עדיין נעול'}</div>`;el.appendChild(b)});}
+function show(screen){document.getElementById('routeSection').classList.toggle('hidden',screen!=='route');document.getElementById('packingSection').classList.toggle('hidden',screen!=='packing');document.getElementById('badgesSection').classList.toggle('hidden',screen!=='badges');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.screen===screen));}
+document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>show(b.dataset.screen));
+buildTabs();renderDays();renderPacking();updateProgress();renderBadges();
+</script>
+</body>
+</html>
